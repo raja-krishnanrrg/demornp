@@ -1,0 +1,49 @@
+.register-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eef2f7;
+}
+
+.register-box {
+  width: 350px;
+  padding: 25px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.register-box h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.register-box input,
+.register-box select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}
+
+.register-box button {
+  padding: 10px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.register-box button:hover {
+  background: #1e40af;
+}
+
+.register-box button:disabled {
+  background: gray;
+  cursor: not-allowed;
+}

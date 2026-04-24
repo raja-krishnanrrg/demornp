@@ -1,0 +1,63 @@
+.admin-container {
+  padding: 20px;
+  font-family: Arial;
+  background: #f4f6f8;
+  min-height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+h2 {
+  margin-top: 30px;
+  color: #444;
+}
+
+/* CARD STYLE */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  width: 250px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* USER CARD */
+.user-card {
+  border-left: 5px solid #007bff;
+}
+
+/* TASK CARD */
+.task-card {
+  border-left: 5px solid #28a745;
+}
+
+/* BUTTON */
+.delete-btn {
+  margin-top: 10px;
+  padding: 6px 10px;
+  background: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.delete-btn:hover {
+  background: darkred;
+}
+
+/* SELECT BOX */
+.select-box {
+  padding: 6px;
+  margin: 10px 0;
+  border-radius: 5px;
+}

@@ -1,0 +1,45 @@
+.admin-layout {
+  display: flex;
+}
+
+.sidebar {
+  width: 220px;
+  background: #0d6efd;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar a {
+  display: block;
+  margin: 10px 0;
+  color: white;
+  text-decoration: none;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+.topbar {
+  background: #0d6efd;
+  color: white;
+  padding: 10px;
+}
+
+/* table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+button {
+  margin: 5px;
+  cursor: pointer;
+}
