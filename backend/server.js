@@ -15,32 +15,33 @@
 
 // const app = express();
 
-
-// // ✅ CORS FIX (VERY IMPORTANT)
-// // app.use(cors({
-// //   origin: "https://demornp.onrender.com",
-// //   credentials: true
-// // }));
-
+// // ✅ SIMPLE & WORKING CORS (FINAL)
 // app.use(cors({
-//   origin: ["http://localhost:5173", "https://demornp.onrender.com"],
+//   origin: [
+//     "http://localhost:5173",
+//     "https://demornp.onrender.com"
+//   ],
+//   methods: ["GET", "POST", "PUT", "DELETE"],
 //   credentials: true
 // }));
 
+// // ✅ Middleware
 // app.use(express.json());
 
 
-// // ✅ MongoDB Connection
+// // ✅ MongoDB
 // mongoose.connect(process.env.MONGO_URI)
-//   .then(() => {
-//     console.log("✅ MongoDB Connected");
-//   })
-//   .catch((err) => {
-//     console.log("❌ DB Error:", err.message);
-//   });
+//   .then(() => console.log("✅ MongoDB Connected"))
+//   .catch((err) => console.log("❌ DB Error:", err.message));
 
 
-// // ✅ Static frontend (production only)
+// // ✅ API Routes
+// app.use("/api/auth", authRoutes);
+// app.use("/api/tasks", taskRoutes);
+// app.use("/api/admin", adminRoutes);
+
+
+// // ✅ Static frontend (ONLY production)
 // const __dirname = path.resolve();
 
 // if (process.env.NODE_ENV === "production") {
@@ -48,16 +49,10 @@
 
 //   app.use(express.static(frontendPath));
 
-//   app.get(/.*/, (req, res) => {
+//   app.get("/*", (req, res) => {
 //     res.sendFile(path.join(frontendPath, "index.html"));
 //   });
 // }
-
-
-// // ✅ API Routes
-// app.use("/api/auth", authRoutes);
-// app.use("/api/tasks", taskRoutes);
-// app.use("/api/admin", adminRoutes);
 
 
 // // ✅ Server start
@@ -83,7 +78,8 @@ import adminRoutes from "./routes/adminRoutes.js";
 
 const app = express();
 
-// ✅ SIMPLE & WORKING CORS (FINAL)
+
+// ✅ CORS (LOCAL + LIVE WORK)
 app.use(cors({
   origin: [
     "http://localhost:5173",
@@ -93,11 +89,12 @@ app.use(cors({
   credentials: true
 }));
 
+
 // ✅ Middleware
 app.use(express.json());
 
 
-// ✅ MongoDB
+// ✅ MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB Connected"))
   .catch((err) => console.log("❌ DB Error:", err.message));
@@ -109,7 +106,7 @@ app.use("/api/tasks", taskRoutes);
 app.use("/api/admin", adminRoutes);
 
 
-// ✅ Static frontend (ONLY production)
+// ✅ Static frontend (PRODUCTION ONLY)
 const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "production") {
@@ -117,7 +114,8 @@ if (process.env.NODE_ENV === "production") {
 
   app.use(express.static(frontendPath));
 
-  app.get("/*", (req, res) => {
+  // ✅ FIXED (NO CRASH)
+  app.use((req, res) => {
     res.sendFile(path.join(frontendPath, "index.html"));
   });
 }
