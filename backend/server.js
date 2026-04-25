@@ -69,7 +69,6 @@
 
 
 
-
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -84,34 +83,21 @@ import adminRoutes from "./routes/adminRoutes.js";
 
 const app = express();
 
-
-// ✅ CORS (FINAL WORKING)
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://demornp.onrender.com"
-];
-
+// ✅ SIMPLE & WORKING CORS (FINAL)
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(null, false); // 🔥 crash ஆகாம safe
-    }
-  },
+  origin: [
+    "http://localhost:5173",
+    "https://demornp.onrender.com"
+  ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
-
-// ✅ FIXED (NO ERROR)
-app.options(/.*/, cors());
-
 
 // ✅ Middleware
 app.use(express.json());
 
 
-// ✅ MongoDB Connection
+// ✅ MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB Connected"))
   .catch((err) => console.log("❌ DB Error:", err.message));
@@ -123,7 +109,7 @@ app.use("/api/tasks", taskRoutes);
 app.use("/api/admin", adminRoutes);
 
 
-// ✅ Static frontend (production only)
+// ✅ Static frontend (ONLY production)
 const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "production") {
