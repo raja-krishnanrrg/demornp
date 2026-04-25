@@ -6,7 +6,7 @@ const API = axios.create({
   baseURL:
     window.location.hostname === "localhost"
       ? "http://localhost:5000/api"
-      : "https://demornp.onrender.com",
+      : "https://demornp-backend.onrender.com/api",
 });
 
 // Attach token automatically

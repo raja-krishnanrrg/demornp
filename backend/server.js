@@ -45,6 +45,18 @@ app.use("/api/admin", adminRoutes);
 
 
 // ✅ Static frontend (PRODUCTION ONLY)
+// const __dirname = path.resolve();
+
+// if (process.env.NODE_ENV === "production") {
+//   const frontendPath = path.join(__dirname, "..", "frontend", "dist");
+
+//   app.use(express.static(frontendPath));
+
+//   // ✅ FIXED (NO CRASH)
+//   app.use((req, res) => {
+//     res.sendFile(path.join(frontendPath, "index.html"));
+//   });
+// }
 const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === "production") {
@@ -52,12 +64,12 @@ if (process.env.NODE_ENV === "production") {
 
   app.use(express.static(frontendPath));
 
-  // ✅ FIXED (NO CRASH)
-  app.use((req, res) => {
-    res.sendFile(path.join(frontendPath, "index.html"));
+  app.get("*", (req, res) => {
+    if (!req.path.startsWith("/api")) {
+      res.sendFile(path.join(frontendPath, "index.html"));
+    }
   });
 }
-
 
 // ✅ Server start
 const PORT = process.env.PORT || 5000;
